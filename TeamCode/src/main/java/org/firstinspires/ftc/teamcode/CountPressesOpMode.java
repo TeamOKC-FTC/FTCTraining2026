@@ -13,14 +13,15 @@ public class CountPressesOpMode extends LinearOpMode {
         touchSensor = hardwareMap.get(TouchSensor.class, "testTouch");
 
         waitForStart();
-
+        int pressCount = 0; // Our counter variableh
+        boolean lastPressed = false;;
         while (opModeIsActive()) {
-            int pressCount = 0; // Our counter variable
 
-            if (touchSensor.isPressed()) {
+
+            if (!lastPressed && touchSensor.isPressed()) {
                 pressCount = pressCount + 1;
             }
-
+            lastPressed=touchSensor.isPressed();
             telemetry.addData("Sensor Press Count", pressCount);
             telemetry.update();
         }

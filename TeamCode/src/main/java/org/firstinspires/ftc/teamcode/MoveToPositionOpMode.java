@@ -18,16 +18,17 @@ public class MoveToPositionOpMode extends LinearOpMode {
         // Configure the motor
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motor.setPower(0.0);
+        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor.setTargetPosition(30000);
+        motor.setPower(1);
 
         waitForStart();
 
         while (opModeIsActive()) {
             if (touchSensor.isPressed()) {
-                motor.setPower(0.4);
+                motor.setPower(1);
             } else {
-                motor.setPower(0.0);
+                motor.setPower(0);
             }
 
             telemetry.addData("Encoder Ticks", motor.getCurrentPosition());
