@@ -24,7 +24,7 @@ public class MoveToPositionOpMode extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            if (motor.getCurrentPosition() <1000) {
+            if (motor.getCurrentPosition() <960) {
                 motor.setPower(0.4);
             } else {
                 motor.setPower(0.0);
