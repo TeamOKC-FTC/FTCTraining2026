@@ -27,11 +27,15 @@ public class PDOpMode extends LinearOpMode {
         int pressedPosition = 1000; // Position to target when the button is pressed
 
         waitForStart();
-
+        int targetPosition = 1000;
         while (opModeIsActive()) {
-            if (touchSensor.isPressed()) {
-                // While the button is pressed, move the motor
-                motor.setPower(0.3);
+
+            if (motor.getCurrentPosition() < 1030) {
+                // If we are below 1000, move forward
+                motor.setPower(0.1);
+            } else if (motor.getCurrentPosition() > 970) {
+                // If we are above 1000, move backward
+                motor.setPower(-0.1);
             } else {
                 // When the button is not pressed, stop the motor
                 motor.setPower(0.0);
