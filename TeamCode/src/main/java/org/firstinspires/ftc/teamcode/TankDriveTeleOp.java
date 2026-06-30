@@ -16,6 +16,7 @@ public class TankDriveTeleOp extends LinearOpMode {
         // TODO: Initialize the other three wheels here (leftBack, rightFront, rightBack)
 
         // Configure motors
+        leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftFront.setPower(0.0);
         // TODO: Configure the other three wheels the same way
