@@ -33,8 +33,8 @@ public class GamepadExampleOp extends LinearOpMode {
 
             // --- Drive Inputs ---
             // TODO: Set each of these variables to an axis input from the gamepad above
-            double forwardSpeed = 0;
-            double turnSpeed = 0;
+            double forwardSpeed =-gamepad1.right_stick_y;
+            double turnSpeed = -gamepad1.right_stick_x;
 
             telemetry.addData("Forward Speed", forwardSpeed);
             telemetry.addData("Turn Speed", turnSpeed);
