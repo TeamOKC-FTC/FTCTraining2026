@@ -25,18 +25,29 @@ public class PDOpMode extends LinearOpMode {
         // Set our controller targets positions (in encoder ticks)
         int defaultPosition = 0; // Position to target when the button is not pressed
         int pressedPosition = 1000; // Position to target when the button is pressed
+        //pid values
+        double kP=.03;//propotinal gain
+        double kD=0.01; //derivative gain
+
+        double lastError =0.0;//tracks previous error
 
         waitForStart();
 
         while (opModeIsActive()) {
-            if (touchSensor.isPressed()) {
-                // While the button is pressed, move the motor
-                motor.setPower(0.3);
-            } else {
-                // When the button is not pressed, stop the motor
-                motor.setPower(0.0);
+            int targetPosition=defaultPosition;
+            if (touchSensor.isPressed()){
+                targetPosition=pressedPosition;
+
             }
 
+            double error = targetPosition- motor.getCurrentPosition(); //calculate error
+            double derivative=error-lastError;//calculate derivative
+
+            //calculate power using PD control
+            double power=(error*kP)+(derivative*kD);
+
+            motor.setPower(power);
+            lastError=error;
             // Display encoder ticks
             telemetry.addData("Encoder Ticks", motor.getCurrentPosition());
             telemetry.update();
