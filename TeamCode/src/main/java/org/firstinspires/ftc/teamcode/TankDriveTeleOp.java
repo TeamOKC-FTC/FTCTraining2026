@@ -37,6 +37,7 @@ public class TankDriveTeleOp extends LinearOpMode {
         rightBack.setDirection(DcMotor.Direction.REVERSE);
         double startTime = 0;
         autoTurn = false;
+
         waitForStart();
         while (opModeIsActive()) {
 
